@@ -1,0 +1,60 @@
+program qq;
+const n = 5;
+type
+  TmyArray= array[0..2,0..n] of real;
+var
+  a: array [0..2] of real;
+  y: TmyArray;
+  b, h: real;
+  i, j: integer;
+
+function F(a, x: real): real;
+begin
+F:=exp(-(a*a+2*x+0.7));
+end;
+
+function psi(y: TmyArray; i: integer): real;
+var f:real;
+begin
+  f := 0;
+  for var j := 0 to n do
+    f := f + y[i][j];
+  psi := f;
+end;
+
+function fi(y: TmyArray; i: integer): real;
+var min:real; 
+begin
+  min := y[0][0];
+  for var j := 0 to n do
+  begin
+    if (y[i][j] < min) then min := y[i][j];
+  end;
+  fi := min;
+end;
+
+begin
+  writeln('Enter b');
+  readln(b);
+  writeln('Enter h');
+  readln(h);
+  for i := 0 to 2 do
+  begin
+    writeln('Enter a',i+1);
+    readln(a[i]);
+  end;
+  for i := 0 to 2 do 
+  begin
+    for j := 0 to n do
+    begin
+      y[i][j] := F(a[i], b + j * h);
+    end;
+  end;
+  for i := 0 to 2 do
+  begin
+    writeln('fi',i+1,'=', fi(y,i), '   ');
+    writeln('psi',i+1,'=', psi(y, i), '   ');
+    writeln('a',i+1,'=', a[i], '   ');
+    writeln;
+  end;
+end.
