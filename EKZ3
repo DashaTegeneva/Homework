@@ -1,0 +1,35 @@
+program a3;
+
+const
+  CN = 20;
+
+type
+  arr = array [1..CN] of integer;
+
+var
+  i, n: integer;
+  b: arr;
+
+function maxStep(b: arr; n: integer): integer;
+var
+  i, k, max: integer;
+begin
+  k := 1;
+  max := k;
+  for i := 1 to n - 1 do
+  begin
+    if b[i] <  b[i + 1] then
+      inc(k)
+    else
+      k := 1;
+    if k > max then
+      max := k;
+  end;
+  result := max;
+end;
+begin
+  readln(n);
+  for i := 1 to n do
+    read(b[i]);
+  write(maxStep(b, n));
+end.
