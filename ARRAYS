@@ -1,0 +1,32 @@
+program ds; 
+var 
+  a : array [1..7] of integer; 
+  b : array [1..3] of integer; 
+  j, i, m, k: integer; 
+begin 
+  for i := 1 to 7 do 
+    readln (a[i]);
+    
+  for j := 1 to 3 do
+    readln (b[j]);
+  
+  j := 1; 
+  k := 0;
+  
+  for i := 1 to 7 do 
+    while (j <= 3) do 
+      begin 
+        if (a[i] = b[j]) then 
+          begin 
+            m := i; 
+            inc(j);
+          end 
+        else 
+          begin
+            j := 1;
+            break;
+          end;
+        break;
+      end; 
+   write (m - 2);
+end.
