@@ -1,0 +1,39 @@
+program F1;
+
+var
+  f: text;
+  lmax: integer;
+  wmax: string;
+  
+procedure lmaxSearch(var f: text; var wmax: string; var lmax: integer);
+var
+  w: string;
+  el: char;
+  code: integer;
+begin
+  lmax := 0;
+  w:= '';
+  wmax := '';
+  while not eof(f) do
+  begin
+    read(f, el);
+    code := ord(el);
+    if (((code >= ord('A')) and (code <= ord('Z'))) or ((code >= ord('a')) and (code <= ord('z')))) then
+      w := w + el
+    else
+      w := '';
+    if length(w) > length(wmax) then
+      wmax := w;
+  end;
+  lmax := length(wmax)
+end;
+
+BEGIN
+  assign(f, 'input.txt');
+  reset(f);
+  lmaxSearch(f, wmax, lmax);
+  writeln('maxLength = ', lmax);
+  write('word = ' , wmax);
+  close(f);
+END.
+  
