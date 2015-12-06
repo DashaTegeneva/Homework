@@ -1,0 +1,37 @@
+program a2;
+
+const
+  n = 20;
+
+var
+  i, k, c: integer;
+  b: boolean;
+  a: array [1..n] of integer;
+
+begin
+  b := false;
+  for i := 1 to n do
+  begin
+    read(c);
+    a[i] := c;
+  end;
+  c := 0;
+  for k := 1 to (n div 2) do 
+  begin
+    for i := 1 to n - k do
+    begin
+      if a[i] = a[i + k] then
+        inc(c);
+    end;
+    if c = n - k then
+    begin
+      write('Period = ', k, ' ');
+      b := true;
+    end
+    else
+    if (k = n div 2) and (b = false) then
+      write('Neperiodichna')
+    else
+      c := 0;
+  end;
+end.
