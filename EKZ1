@@ -1,0 +1,71 @@
+program qq;
+
+type
+  num = record
+    s: string;
+  end;
+
+var
+  a, b, c: num;
+
+procedure myreverse(var s: string);
+var
+  ns: string;
+begin
+  ns := '';
+  for var i := length(s) downto 1 do
+    ns := ns + s[i];
+  s := ns;
+end;
+
+begin
+  readln(a.s);
+  readln(b.s);
+  myreverse(a.s);
+  myreverse(b.s);
+  var lengthA := a.s.Length;
+  var lengthB := b.s.Length;
+  var min, max: integer;
+  if(lengthA < lengthB) then 
+  begin
+    c.s := b.s;
+    min := LengthA;
+    max := LengthB;
+  end
+  else
+  begin
+    c.s := a.s;
+    min := LengthB;
+    max := lengthA;
+  end;
+  
+  var temp: integer;
+  var k, s1, s2, code: integer;
+  k := 0;
+  for var i := 1 to min  do
+  begin
+    val(a.s[i].ToString, s1, code);
+    val(b.s[i].ToString, s2, code);
+    temp := s1 + s2 + k;
+    c.s[i] := Chr(temp mod 10 + 48);
+    k := temp div 10;
+  end;
+  var i := 1;
+  while(not (k = 0)) do
+  begin
+    if((min + i) <= max) then
+    begin
+      val(c.s[min + i].ToString, s1, code);
+      c.s[min+i] := Chr((s1 + k) mod 10 + 48);
+      k := (s1 + k) div 10;
+    end
+    else
+    begin
+      c.s := c.s + k;
+      k := 0;
+    end;
+    i:=i+1;
+  end;
+  myreverse(c.s);
+  writeln(c.s);
+  
