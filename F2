@@ -1,0 +1,25 @@
+program F2;
+
+var
+  f: text;
+  addition: integer;
+  
+procedure addSearch(f: text; var addition: integer);
+var
+  el: integer;
+begin
+  addition := 0;
+  while not eof(f) do
+  begin
+    read(f, el);
+    addition := addition + el;
+  end;
+end;
+
+BEGIN
+  assign(f, 'input.txt');
+  reset(f);
+  addSearch(f, addition);
+  write(addition);
+  close(f);
+END.
