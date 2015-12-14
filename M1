@@ -1,0 +1,57 @@
+program m1;
+
+const
+  CN = 10;
+  
+type
+  arrT = array[1..CN,1..CN] of integer;
+  
+var
+  i, j, n, m: integer;
+  arr: arrT;
+  
+procedure saddlePoints(arr: arrT; n, m: integer);
+var
+  rowMin, rowMax: array [1..CN] of integer; 
+  columnMin, columnMax: array [1..CN] of integer;
+  i, j: integer;
+begin
+  for i := 1 to m do
+  begin
+    rowMin[i] := arr[i, 1];
+    rowMax[i] := arr[i, 1]
+  end;
+  for j := 1 to n do
+  begin
+    columnMin[j] := arr[1, j];
+    columnMax[j] := arr[1, j];
+  end;
+  
+  for i := 1 to m do
+    for j := 1 to n do
+    begin
+      if arr[i, j] < rowMin[i] then
+        rowMin[i] := arr[i, j]
+      else
+      if arr[i, j] > rowMax[i] then
+        rowMax[i] := arr[i, j];
+      if arr[i, j] < columnMin[j] then
+        columnMin[j] := arr[i, j]
+      else
+      if arr[i, j] > columnMax[j] then
+        columnMax[j] := arr[i, j];
+    end;
+  
+  for i := 1 to m do
+    for j := 1 to n do
+      if (rowMin[i] = columnMax[j]) or (rowMax[i] = columnMin[j]) then
+        writeln(arr[i ,j], ' [', i, ' ', j, '] - Seddle point');
+end;
+
+BEGIN
+  readln(n, m);
+  for i := 1 to m do
+    for j := 1 to n do
+      read(arr[i, j]);
+  saddlePoints(arr, n, m);
+END.
