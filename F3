@@ -1,0 +1,33 @@
+program F3;
+
+const
+  MAX = 1000;
+  CN = 20;
+
+type
+  T = 1..MAX;
+  tArr = array[1..CN] of T;
+  
+var
+  arr: tArr;
+  n: integer;
+  f: text;
+
+procedure writeFile(var f: text; arr: tArr; n: integer);
+var
+  i: integer;
+begin
+  for i := 1 to n do
+  begin
+    read(arr[i]);
+    write(f, arr[i], ' ');
+  end;
+end;
+
+BEGIN
+  readln(n);
+  assign(f, 'output.txt');
+  rewrite(f);
+  writeFile(f, arr, n);
+  close(f);
+END.
