@@ -1,0 +1,44 @@
+program OA1;
+
+const
+  CN = 20;
+
+type tArr = array[1..CN] of integer;
+  
+var 
+  x, i, n: integer;
+  arr: tArr;
+  
+function dikhotSearch(arr: tArr; x, n: integer): integer;
+var
+  left, right, mid: integer;
+  found: boolean;
+begin
+  left := 1;
+  right := n;
+  found := false;
+  while (left <= right) and (not found) do
+  begin
+    mid := (left + right) div 2;
+    if x = arr[mid] then
+    begin
+      found := true;
+      result := mid;
+    end
+    else
+    if x < arr[mid] then
+      right := mid - 1
+    else
+      left := mid + 1;
+  end;
+  if not found then
+    result := -1;
+end;
+
+BEGIN
+  readln(x);
+  readln(n);
+  for i := 1 to n do
+    read(arr[i]);
+  write(dikhotSearch(arr, x, n));
+END.
