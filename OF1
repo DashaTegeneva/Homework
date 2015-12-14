@@ -1,0 +1,33 @@
+program OF1;
+
+var
+  f1, f2: text;
+  
+function include(f1, f2: text): boolean;
+var
+  el1, el2: integer;
+  flag: boolean;
+begin
+  flag := true;
+  while not eof(f1) do
+  begin
+    read(f1, el1);
+    repeat
+      read(f2, el2);
+    until eof(f2) or (el2 >= el1);
+    if el1 <> el2 then
+      flag := false;
+  end;
+  result := flag;
+end;
+
+BEGIN
+  assign(f1, 'input1.txt');
+  reset(f1);
+  assign(f2, 'input2.txt');
+  reset(f2);
+  write(include(f1, f2));
+  close(f1);
+  close(f2);
+END.
+  
