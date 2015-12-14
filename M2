@@ -1,0 +1,47 @@
+program M2;
+
+const
+  CN = 10;
+
+type
+  tArr = array[1..CN,1..CN] of real;
+
+var
+  n, i, j: integer;
+  arr: tArr;
+
+function squareIsMagic(arr: tArr; n: integer): boolean;
+var
+  row, column: array[1..CN] of real;
+  i, j: integer;
+  b: boolean;
+begin
+  b := true;
+  for i := 1 to n do
+  begin
+    row[i] := 0;
+    column[i] := 0;
+  end;
+  for i := 1 to n do
+    for j := 1 to n do
+    begin
+      row[i] := row[i] + arr[i,j];
+      column[j] := column[j] + arr[i,j];
+    end;
+  for i := 1 to n do
+    if row[i] <> column[i] then
+      b := false;
+  result := b;
+end;
+
+BEGIN
+  readln(n);
+  for i := 1 to n do
+    for j := 1 to n do
+      read(arr[i,j]);
+  if squareIsMagic(arr, n) then
+    write('YES')
+  else
+    write('NO');
+END.
+        
