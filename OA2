@@ -1,0 +1,42 @@
+program OA2;
+
+const
+  CN = 10;
+
+type
+  tArr = array [1..CN] of integer;
+  
+var
+  i, n1 , n2: integer;
+  arr1, arr2: tArr;
+  
+function include(n1, n2: integer; arr1, arr2: tArr): boolean;
+var
+  k, i: integer;
+  flag: boolean;
+begin
+  flag := true;
+  k := 1;
+  for i := 1 to n1 do
+  begin
+    while (arr2[k] < arr1[i]) and (k < n2) do
+      inc(k);
+    if arr2[k] <> arr1[i] then
+      flag := false
+  end;
+  result := flag;
+end;
+
+BEGIN
+  readln(n1);
+  for i := 1 to n1 do
+    read(arr1[i]);
+  readln;
+  readln(n2);
+  for i := 1 to n2 do
+    read(arr2[i]);
+  if include(n1, n2, arr1, arr2) then
+    write('Yes')
+  else
+    write('No');
+END.
