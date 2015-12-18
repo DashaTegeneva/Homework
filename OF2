@@ -1,0 +1,67 @@
+program qq(input, output);
+
+var
+  f3: text;
+  f1: text;
+  f2: text;
+  a, b: real;
+  isEnded: boolean;
+  endOfF1: boolean;
+  endOfF2: boolean;
+
+
+begin
+  assign(f3, 'f3.txt');
+  assign(f1, 'f1.txt');
+  assign(f2, 'f2.txt');
+  rewrite(f3);
+  reset(f1);
+  reset(f2);
+  
+  read(f1, a);
+  read(f2, b);
+  isEnded := false;
+  endOfF2:= false;
+  endOFF1:= false;
+  
+  while (not isEnded) do
+  begin
+    if EOF(f1) and EOF(f2) then 
+      isEnded := true;
+    
+    if (a < b) and not EOF(f1) then
+    begin
+      write(f3,a, ' ');
+      read(f1, a);
+    end
+    else
+    if not EOF(f2) then
+    begin
+      write(f3,b, ' ');
+      read(f2, b);
+    end;
+    
+    if(not endOFf1 and EOF(f1)) then
+      if(a <= b) then
+      begin
+        write(f3, a, ' ');
+        endOFf1 := true;
+      end;
+      
+    if(not endOFF2 and EOF(f2))then
+      if(b<=a)
+      then
+      begin
+      write(f3,b, ' ');
+      endOFf2 := true;
+      end;
+  end;
+  if(not endOff1)
+  then
+  write(f3,a)
+  else
+  write(f3,b);
+  close(f1);
+  close(f2);
+  close(f3);
+end.
