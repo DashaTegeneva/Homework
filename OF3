@@ -1,0 +1,26 @@
+procedure substrationFiles (var f1, f2, f3:text;);
+var el1, el2, last, last1:integer;
+begin
+ read (f2, el2);
+  while (not eof(f1)) and ( not eof(f2)) do
+   begin
+    read(f1, el1);
+  while (not eof(f1)) and ( not eof(f2))do 
+  begin
+   read ( f2, el2);
+  while (el2<el1) and (not (eof(f2))  do
+   begin
+    read (f2,el2);
+    end;
+  if el2<>el1 then 
+   begin 
+    writeln (f3, el1);
+   end;
+  end;
+while not eof(f1) do 
+ begin
+  read (f1, el1);
+   writeln (f3, el1);
+   end;
+   end;
+   
