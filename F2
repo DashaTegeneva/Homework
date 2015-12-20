@@ -4,22 +4,40 @@ var
   f: text;
   addition: integer;
   
-procedure addSearch(f: text; var addition: integer);
-var
-  el: integer;
+function chartoint(c:char):integer;
 begin
-  addition := 0;
+  chartoint := ord(c)-ord('0');
+  end;
+function sumfile ( var f:text) : integer;
+ var res : integer;
+     number, temp : integer;
+     symb: char;
+      begin 
+       res:=0;
   while not eof(f) do
   begin
-    read(f, el);
-    addition := addition + el;
+   number:=0;
+   symb:='0';
+    while (symb<> ' ') and not eof(f) do
+     begin
+      read( f, symb);
+       if ( sym <> ' ') then
+        begin 
+         temp:= chartoint(symb);
+        number:=number*10+temp;
+        end;
+      end;
+    writeln (number);
+     res:= res+number;
+    end;
+  sumfile:=res;
   end;
-end;
-
-BEGIN
+  
+begin
   assign(f, 'input.txt');
   reset(f);
-  addSearch(f, addition);
-  write(addition);
+  sum:=sumfile(f);
+  writeln(sum);
+  readln;
   close(f);
-END.
+end.
