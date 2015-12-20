@@ -1,0 +1,17 @@
+procedure intersectionfiles (var f1:fT; var f2:fT; var f3:fT);
+ var el1, el2: integer;
+  begin
+   read (f2, el2);
+    while (not eof(f1)) and ( not eof (f2)) do
+     begin
+      read ( f1, el1);
+       while (el2< el1) and (not eof (f2)) do
+        begin 
+         read (f2, el2); 
+        end;
+    if el2=el1 then 
+     begin 
+      writeln (f3, el1);
+       end;
+      end;
+    end;
