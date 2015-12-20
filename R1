@@ -1,0 +1,39 @@
+program r1;
+const m;
+type num=record
+chislitel:real;
+znamenatel:real;
+end;
+
+type art=array [1..m] of num;
+ var arr: art;
+  i, n:integer;
+  x:real;
+  value:num;
+ 
+function mult (a:num; b:real):num;
+ var res:num;
+  begin
+   res.chislitel := a.chislitel*b;
+   res.znamenatel := a.znamenatel;
+  mult:= res;
+  end;
+  
+function sum (a:num; b:num):num;
+var res:num;
+begin
+ res.chiclitel:= a.chislitel*b.znamenatel+ b.chislitel*a.znamenatel;
+ sum:=res;
+end;
+
+function valuehorner (x:real; arr :art; n:integer) :num;
+ var res:num;
+  begin
+   res:=num (mult (arr[1], x), arr[2]);
+   for i:= 3 to n do 
+    begin
+     res:=mult (res,x);
+     res:=sum (res, arr[i]);
+    end;
+  valuehorner:= res;
+end;
