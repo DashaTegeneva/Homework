@@ -1,0 +1,27 @@
+program r3;
+const m=100;
+type point = record
+     x: real;
+     y:real;
+    end;
+type art=array [1..m] of point;
+  var arr :art; i, n:integer; r: real; res: boolean;
+  
+  function attach ( r:real; arr: art; n:int): boolean;
+   var flag: boolean; i: integer;
+   begin
+    flag:= true;
+     for i=1 to n do
+      begin 
+       flag:= true;
+       for i:=1 to n do
+        begin
+         if (arr[i].x * arr[i].x+ arr[i].y*arr[i].y) <> r*r then
+          begin
+           flag:=false;
+           break;
+          end;
+        end;
+      attach:=flag;
+    end;
+  
