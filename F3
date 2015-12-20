@@ -2,32 +2,55 @@ program F3;
 
 const
   MAX = 1000;
-  CN = 20;
+  CN = 100;
 
 type
-  T = 1..MAX;
+  T = 0..MAX;
   tArr = array[1..CN] of T;
+  fT=text;
   
 var
   arr: tArr;
-  n: integer;
-  f: text;
+  i, n: integer;
+  f: ft;
 
-procedure writeFile(var f: text; arr: tArr; n: integer);
-var
-  i: integer;
-begin
-  for i := 1 to n do
-  begin
-    read(arr[i]);
-    write(f, arr[i], ' ');
-  end;
+function inttochar(num:integer):char;
+ begin 
+  inttochar:= chr(num + ord('0'));
 end;
 
+procedure writefile( var f:fT; arrT; n:integer);
+ var i, divider, temp : integer;
+     flag:boolean;
+      begin
+       flag:= false;
+       divider:=max;
+        while divider>=1 do
+         begin
+          temp := arr[i] div divider mod 10;
+           if ((temp>0) or ( divider =1)) and (flag=false) then
+            begin
+             flag:= true;
+            end;
+           if flag then
+            begin
+             write (f, inttochar(temp));
+            end;
+          divider:=divider div 10;
+          end;
+        write(f, ' ');
+      
+
 BEGIN
-  readln(n);
+  assign(input, 'input.txt');
+  rewset(input);
   assign(f, 'output.txt');
   rewrite(f);
-  writeFile(f, arr, n);
+  readln(f)
+  for i:=1 to n do
+   begin
+    read (arr[i]);
+  end;
+  writefile (f, arr, n);
   close(f);
 END.
