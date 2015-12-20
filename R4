@@ -1,0 +1,64 @@
+program r4;
+const examnumber = 5;
+type enrolle = record
+ name : string[100];
+ medal : boolean;
+ exam : array [1..examnumber] of 2..5;
+end;
+
+type fT=file of enrolle;
+var f, font = fT;
+ procedure writeEnrollment (var f:fT);
+  var person:enrolle;
+   begin 
+    person.name:= 'Dasha';
+    person.medal:=true;
+    person.exam[1]:=5;
+    person.exam[2]:=5;
+    person.exam[3]:=5;
+    person.exam[4]:=5;
+    person.exam[5]:=5;
+  write(f,person);
+    person.name:= 'Sasha';
+    person.medal:=false;
+    person.exam[1]:=4;
+    person.exam[2]:=3;
+    person.exam[3]:=2;
+    person.exam[4]:=2;
+    person.exam[5]:=2;
+  write(f, person); 
+  person.name:= 'Masha';
+    person.medal:=false;
+    person.exam[1]:=4;
+    person.exam[2]:=3;
+    person.exam[3]:=5;
+    person.exam[4]:=5;
+    person.exam[5]:=5;
+  write(f, person); 
+  end;
+  
+  procedure enrollment (var f:fT);
+   var person:enrolle; tempexam:boolean; i:integer;
+    begin
+     while not eof(F) do 
+      begin
+       read(f,person); tempexam:= false;
+       for i:=1 to examnumber do
+        begin
+         if person.exam[i]=5 then 
+          begin 
+           tempexam:= true;
+           break;
+          end;
+        end;
+      if (person.medal=true) or (tempexam) then
+       begin 
+        write (person.name, ' ', person.medal, ' ');
+      for i:=1 to examnumber do
+       begin
+        write( person. exam [i], ' ');
+       end;
+      writeln;
+      end;
+    end;
+  end;
