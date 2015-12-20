@@ -1,0 +1,43 @@
+program r2;
+ type point= record
+  r:real;
+  fi:real;
+end;
+
+type fi:file of point;
+ var line:straight; f:fT;
+ res: boolean;
+
+function attachment (line:straight; p:point):boolean;
+begin
+ if (p.fi>=90) then 
+  begin 
+   p.fi:= p.fi-180;
+   end
+    else 
+     if (p.fi<=90) then
+      begin 
+       p.fi:= p.fi+180; 
+      end;
+    if (p.r * sin/p.fi/180*pi) <> line.k *p.r * cos (p.fi/ 180*pi )+ line.b ) then 
+    begin
+     attachment := true;
+      end;
+  end;
+  
+  function attachment p ( var f:fT; line:straight) : boolean;
+   var flag : boolean;
+    begin
+     flag := true;
+      while (not eof) do 
+      begin
+       readln (f, p);
+       if not attachment (line,p) then
+        begin
+         flag:= false;
+          exit;
+          end;
+          end;
+          end;
+          attachment:= flag;
+           end;
